@@ -15,8 +15,13 @@ class LoginForm(AuthenticationForm):
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('name', 'username', 'email', 'password1', 'password2')
     
+    name = forms.CharField(max_length=30, required=True, help_text='Required. Enter your full name.',widget=forms.TextInput(attrs={
+        'placeholder': 'Your name',
+        'class': 'custom-form-input'
+    }))
+
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Your username',
         'class': 'custom-form-input'
