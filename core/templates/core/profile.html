@@ -1,7 +1,21 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
+
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <h1>The Profile page</h1>
+    <div class="profile">
+        <div class="profile-picture">
+            <img src="{% static 'profile_images/profile_picture.jpg' %}" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h1>{{ user_profile.name }}</h1>
+            <p>Email: {{ user_profile.email }}</p>
+            <p>Place: {{ user_profile.place }}</p>
+            <p>Interests: {{ user_profile.interests }}</p>
+            <p>About : {{ user_profile.about_me }}</p>
+            <p>Language :{{user_profile.language }}</p>
+        </div>
+    </div>
 {% endblock %}

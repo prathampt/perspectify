@@ -18,6 +18,7 @@ __pycache__/
 
 # data
 *.dump
+*.jpg
 
 # npm
 node_modules/

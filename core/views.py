@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as user_logout
 
+
 from .forms import SignupForm
+
 
 def index(request):
     return render(request, 'core/index.html')
@@ -32,4 +34,4 @@ def logout(request):
     return redirect('/core/login/')
 
 def profile(request):
-    return render(request, 'core/profile.html')
+    return render(request, 'core/profile.html', {'user_profile': request.user})
