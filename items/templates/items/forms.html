@@ -1,0 +1,16 @@
+{% extends 'items/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+  <h1 class="section-title">{{ title }}</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="form-label" for="id_field_name">Field Name:</label>
+      {{ form.field_name }}
+    </div>
+    <!-- Add other form fields with corresponding labels here -->
+
+    <button class="submit-button" type="submit">Save</button>
+  </form>
+{% endblock %}

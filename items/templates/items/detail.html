@@ -1,0 +1,15 @@
+{% extends 'items/base.html' %}
+{% block title %}Book Detail{% endblock %}
+
+{% block content %}
+  <h1 class="section-title">{{ book.title }}</h1>
+  <p class="section-text">Author: {{ book.author }}</p>
+  <p class="section-text">Description: {{ book.description }}</p>
+  <!-- Add more details as needed -->
+  <h2 class="section-title">Related Books</h2>
+  <ul class="menu-list">
+    {% for related_book in related_books %}
+      <li><a class="menu-link" href="{% url 'items:detail' related_book.pk %}">{{ related_book.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

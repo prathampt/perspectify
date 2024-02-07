@@ -1,0 +1,23 @@
+{% extends 'items/base.html' %}
+{% block title %}Books{% endblock %}
+
+{% block content %}
+  <h1 class="section-title">Books</h1>
+  <form class="content" action="{% url 'items:books' %}" method="get">
+    <input class="custom-form-input" type="text" name="query" placeholder="Search by title or author" value="{{ query }}">
+    <select class="custom-form-input" name="category">
+      <option value="0">All categories</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}" {% if category.id == category_id %}selected{% endif %}>{{ category.name }}</option>
+      {% endfor %}
+    </select>
+    <button class="submit-button" type="submit">Search</button>
+  </form>
+  <ul class="menu-list">
+    {% for book in books %}
+      <li class="menu-item">
+        <a class="menu-link" href="{% url 'items:detail' book.pk %}">{{ book.title }}</a> by <span class="section-text">{{ book.author }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

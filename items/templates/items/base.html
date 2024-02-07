@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+
+    <title>{% block title %}{% endblock %} | Perspectify</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="/" class="logo">Perspectify</a>
+
+      <div class="menu">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'core:profile' %}" class="menu-item">Profile</a>
+        <a href="{% url 'core:logout' %}" class="menu-item">Log out</a>
+        {% comment %}
+        <a href="{% url 'conversation:inbox' %}" class="menu-item">Inbox</a>
+        <a href="{% url 'dashboard:index' %}" class="menu-item">Dashboard</a>
+        {% endcomment %} {% else %}
+        <a href="{% url 'core:signup' %}" class="menu-item">Sign up</a>
+        <a href="{% url 'core:login' %}" class="menu-item">Log in</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <div class="content">{% block content %} {% endblock %}</div>
+
+    <footer class="footer">
+      <div class="about-section">
+        <h3 class="section-title">About</h3>
+        <p class="section-text">
+          I am making this project and will definetely make it worth...
+          Currently I am struggling with CSS a bit... hahaha...
+        </p>
+      </div>
+
+      <div class="menu-section">
+        <h3 class="section-title">Menu</h3>
+        <ul class="menu-list">
+          <li><a href="{% url 'core:about' %}" class="menu-link">About</a></li>
+          <li>
+            <a href="{% url 'core:contact' %}" class="menu-link">Contact</a>
+          </li>
+          <li><a href="#" class="menu-link">Privacy policy</a></li>
+          <li><a href="#" class="menu-link">Term of use</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
