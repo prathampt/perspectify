@@ -50,3 +50,32 @@ tmp_email/
 .direnv
 .envrc
 .tool-versions
+
+# Ignore media files
+media/
+
+# Ignore image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.svg
+*.ico
+
+# Ignore video files
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.flv
+
+# Ignore audio files
+*.mp3
+*.wav
+*.aac
+*.ogg
+*.flac
+
+# Ignore other media formats if needed
+# Add more file extensions as necessary
