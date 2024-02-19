@@ -17,6 +17,8 @@
 
       <div class="menu">
         {% if request.user.is_authenticated %}
+        <a href="{% url 'items:books' %}" class="menu-item">Books</a>
+        <a href="{% url 'items:add_book' %}" class="menu-item">Add Book</a>
         <a href="{% url 'core:profile' %}" class="menu-item">Profile</a>
         <a href="{% url 'core:logout' %}" class="menu-item">Log out</a>
         {% comment %}

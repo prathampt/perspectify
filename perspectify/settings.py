@@ -126,3 +126,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '../'
+
+import os
+
+# Define the base directory for media files
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Define the directory where media files will be stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Define the URL prefix for media files
+MEDIA_URL = '/media/'

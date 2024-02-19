@@ -2,14 +2,27 @@
 {% block title %}Book Detail{% endblock %}
 
 {% block content %}
-  <h1 class="section-title">{{ book.title }}</h1>
-  <p class="section-text">Author: {{ book.author }}</p>
-  <p class="section-text">Description: {{ book.description }}</p>
-  <!-- Add more details as needed -->
-  <h2 class="section-title">Related Books</h2>
-  <ul class="menu-list">
-    {% for related_book in related_books %}
-      <li><a class="menu-link" href="{% url 'items:detail' related_book.pk %}">{{ related_book.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <div class="book-detail">
+    <h1 class="section-title">{{ book.title }}</h1>
+    <p class="section-text">Author: {{ book.author }}</p>
+    <p class="section-text">Category: {{ book.category }}</p>
+    <p class="section-text">Genre: 
+      {% for genre in book.genre.all %}
+        {{ genre.name }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+    <p class="section-text">{{ book.description }}</p>
+    {% if book.image %}
+      <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image">
+    {% else %}
+      <p>No image available</p>
+    {% endif %}
+    <!-- Add more details as needed -->
+    <h2 class="section-title">Related Books</h2>
+    <ul class="related-books">
+      {% for related_book in related_books %}
+        <li><a href="{% url 'items:detail' related_book.pk %}">{{ related_book.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

@@ -42,7 +42,7 @@ def add_book(request):
             book.created_by = request.user
             book.save()
 
-            return redirect('items:detail', pk=book.pk)
+            return redirect('items:book_detail', pk=book.pk)
     else:
         form = AddBookForm()
 
@@ -61,7 +61,7 @@ def edit_book(request, pk):
         if form.is_valid():
             form.save()
 
-            return redirect('items:detail', pk=book.pk)
+            return redirect('items:book_detail', pk=book.pk)
     else:
         form = EditBookForm(instance=book)
 

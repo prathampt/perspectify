@@ -22,7 +22,7 @@ class AddBookForm(forms.ModelForm):
             }),
             'description': forms.Textarea(attrs={
                 'class': 'custom-form-input',
-                'placeholder': 'Enter dcription'
+                'placeholder': 'Enter description'
             }),
             'image': forms.FileInput(attrs={
                 'class': 'custom-form-input',
