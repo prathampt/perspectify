@@ -81,11 +81,19 @@
         var emailField = document.getElementById('{{ form.email.id_for_label }}');
         var passwordField = document.getElementById('{{ form.password1.id_for_label }}');
         var password2Field = document.getElementById('{{ form.password2.id_for_label }}');
+        var placeField = document.getElementById('{{ form.place.id_for_label }}');
+        var interestsField = document.getElementById('{{ form.interests.id_for_label }}');
+        var aboutMeField = document.getElementById('{{ form.about_me.id_for_label }}');
+        var languageField = document.getElementById('{{ form.language.id_for_label }}');
         
         var usernameError = document.getElementById('usernameError');
         var emailError = document.getElementById('emailError');
         var passwordError = document.getElementById('passwordError');
         var password2Error = document.getElementById('password2Error');
+        var locationError = document.getElementById('locationError');
+        var interestError = document.getElementById('interestError');
+        var aboutError = document.getElementById('aboutError');
+        var languageError = document.getElementById('languageError');
 
         if (usernameField.value.length < 5) {
             usernameError.innerHTML = 'Username must be at least 5 characters.';
@@ -100,7 +108,38 @@
         } else {
             password2Error.innerHTML = '';
         }
+
+        // Add validation for place, interests, about me, and language fields here
+        // Example validation for minimum length
+        if (placeField.value.length < 5) {
+            locationError.innerHTML = 'Place must be at least 5 characters.';
+            event.preventDefault();
+        } else {
+            locationError.innerHTML = ''; 
+        }
+
+        if (interestsField.value.length < 5) {
+            interestError.innerHTML = 'Interests must be at least 5 characters.';
+            event.preventDefault();
+        } else {
+            interestError.innerHTML = ''; 
+        }
+
+        if (aboutMeField.value.length < 10) {
+            aboutError.innerHTML = 'About me must be at least 10 characters.';
+            event.preventDefault();
+        } else {
+            aboutError.innerHTML = ''; 
+        }
+
+        if (languageField.value.length < 3) {
+            languageError.innerHTML = 'Language must be at least 3 characters.';
+            event.preventDefault();
+        } else {
+            languageError.innerHTML = ''; 
+        }
     });
 </script>
+
 
 {% endblock %}

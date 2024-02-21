@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as user_logout
 
-
 from .forms import SignupForm
-
 
 def index(request):
     return render(request, 'core/index.html')
