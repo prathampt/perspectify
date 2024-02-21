@@ -13,28 +13,34 @@
     </select>
     <button class="submit-button" type="submit">Search</button>
   </form>
-  <div class="books-container">
-    {% for book in books %}
-      <a href="{% url 'items:book_detail' book.pk %}" class="book-link">
-        <div class="book-card">
-          <div class="book-image">
-            <img src="{{ book.image.url }}" alt="{{ book.title }}">
-          </div>
-          <div class="book-details">
-            <h2 class="book-title">{{ book.title }}</h2>
-            <p class="book-author">by {{ book.author }}</p>
-            {% if request.user == book.created_by %}
-              <div class="book-actions">
-                <a href="{% url 'items:edit_book' book.pk %}" class="edit-button">Edit</a>
-                <form action="{% url 'items:delete_book' book.pk %}" method="post" style="display: inline;">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      {% for book in books %}
+      <div class="col mb-4">
+        <a href="{% url 'items:book_detail' book.pk %}" class="card-link" style="text-decoration: none;">
+          <div class="card h-100 shadow hover">
+            <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text">Author: {{ book.author }}</p>
+              <!-- You can add more details here if needed -->
+              {% if request.user == book.created_by %}
+              <div class="d-flex justify-content-between">
+                <a href="{% url 'items:edit_book' book.pk %}" class="btn btn-primary">Edit</a>
+                <form action="{% url 'items:delete_book' book.pk %}" method="post">
                   {% csrf_token %}
-                  <button type="submit" class="delete-button">Delete</button>
+                  <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               </div>
-            {% endif %}
+              {% endif %}
+            </div>
           </div>
-        </div>
-      </a>
-    {% endfor %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
   </div>
+  
+  
+  
 {% endblock %}

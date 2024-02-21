@@ -5,16 +5,23 @@ from .models import Category, Book
 from .forms import AddBookForm, EditBookForm
 
 def books(request):
-    query = request.GET.get('query', '')
-    category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
+    category_id = request.GET.get('category', 0)
+    query = request.GET.get('query', '')
+
     books = Book.objects.all()
 
     if category_id:
         books = books.filter(category_id=category_id)
 
     if query:
-        books = books.filter(Q(title__icontains=query) | Q(author__icontains=query))
+        query_words = query.split()
+
+        query_filter = Q()
+        for word in query_words:
+            query_filter |= Q(title__icontains=word) | Q(author__icontains=word)
+
+        books = books.filter(query_filter)
 
     return render(request, 'items/books.html', {
         'books': books,

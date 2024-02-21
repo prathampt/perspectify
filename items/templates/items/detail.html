@@ -1,28 +1,114 @@
 {% extends 'items/base.html' %}
 {% block title %}Book Detail{% endblock %}
 
-{% block content %}
-  <div class="book-detail">
-    <h1 class="section-title">{{ book.title }}</h1>
-    <p class="section-text">Author: {{ book.author }}</p>
-    <p class="section-text">Category: {{ book.category }}</p>
-    <p class="section-text">Genre: 
+{% comment %} {% block content %}
+  <div class="book-detail bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-4">{{ book.title }}</h1>
+    <p class="text-lg text-gray-600 mb-2">Author: {{ book.author }}</p>
+    <p class="text-lg text-gray-600 mb-2">Category: {{ book.category }}</p>
+    <p class="text-lg text-gray-600 mb-2">Genre: 
       {% for genre in book.genre.all %}
         {{ genre.name }}{% if not forloop.last %}, {% endif %}
       {% endfor %}
     </p>
-    <p class="section-text">{{ book.description }}</p>
+    <p class="text-lg text-gray-600 mb-4">{{ book.description }}</p>
     {% if book.image %}
-      <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image">
+      <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image mb-4 rounded-lg">
     {% else %}
-      <p>No image available</p>
+      <p class="text-lg text-gray-600">No image available</p>
     {% endif %}
     <!-- Add more details as needed -->
-    <h2 class="section-title">Related Books</h2>
+    <h2 class="text-2xl font-bold mb-2">Related Books</h2>
     <ul class="related-books">
       {% for related_book in related_books %}
-        <li><a href="{% url 'items:detail' related_book.pk %}">{{ related_book.title }}</a></li>
+        <li><a href="{% url 'items:detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
       {% endfor %}
     </ul>
   </div>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+<div class="cover">
+  <div class="book">
+    
+  <label for="page-1"  class="book__page book__page--1">
+    {% if book.image %}
+      <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image mb-4 rounded-lg">
+    {% else %}
+      <p class="text-lg text-gray-600">No image available</p>
+    {% endif %}
+  </label>
+  
+  <label for="page-2" class="book__page book__page--4">
+    <div class="page__content">
+      {% comment %} <h1 class="page__content-title">I</h1>
+      <div class="page__content-blockquote">
+        <p class="page__content-blockquote-text">HARI SELDON — . . . born in the 11,988th year of the Galactic Era; died 12,069. The dates are more commonly given in terms of the current Foundational Era as -79 to the year 1 F.E. Born to middle-class parents on Helicon, Arcturus sector (where his father, in a legend of doubtful authenticity, was a tobacco grower in the hydroponic plants of the planet), he early showed amazing ability in mathematics. Anecdotes concerning his ability are innumerable, and some are contradictory. At the age of two, he is said to have. . . </p>
+        <p class="page__content-blockquote-text">. . . Undoubtedly his greatest contributions were in the field of psychohistory. Seldon found the field little more than a set of vague axioms; he left it a profound statistical science. . . . </p>
+        <p class="page__content-blockquote-text">. . . The best existing authority we have for the details of his life is the biography written by Gaal Dornick who, as a young man, met Seldon two years before the great mathematician's death. The story of the meeting . . .</p>
+        <span class="page__content-blockquote-reference">Encyclopedia Galactica*</span>
+      </div> {% endcomment %}
+      <div class="page__content-text">
+        <p class="text-lg text-gray-600 mb-4">{{ book.description }}</p></div>
+      <div class="page__number">3</div>
+    </div>
+  </label>
+    
+  <!-- Resets the page -->
+<input type="radio" name="page" id="page-1"/>
+
+<!-- Goes to the second page -->
+<input type="radio" name="page" id="page-2" checked/> <!-- Make sure the correct page is checked -->
+
+<label class="book__page book__page--2">
+  <div class="book__page-front">
+    <div class="page__content">
+      <!-- Book title -->
+      <h1 class="page__content-book-title">{{ book.title }}</h1>
+      
+      <!-- Author -->
+      <h2 class="page__content-author">Author: {{ book.author }}</h2>
+      
+      <!-- Introduction credit -->
+      <p class="page__content-credits">Introduction by <span>{{ book.introduction_author }}</span></p>
+      
+      <!-- Illustration credit -->
+      <p class="page__content-credits">Illustrations by <span>{{ book.illustrator }}</span></p>
+      
+      <!-- Copyright information -->
+      <div class="page__content-copyright">
+        <p>{{ book.publisher }}</p>
+        <p>{{ book.publisher_location }} - {{ book.published_year }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="book__page-back">
+    <div class="page__content">
+      <!-- Contents -->
+      <h1 class="page__content-title">Contents</h1>
+      <table class="page__content-table">
+        <!-- Contents table -->
+        {% for part in book.contents %}
+          <tr>
+            <td align="left">{{ part.part_number }}</td>
+            <td align="left">{{ part.part_title }}</td>
+            <td align="right">{{ part.page_number }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      
+      <!-- Page number -->
+      <div class="page__number">2</div>
+    </div>
+  </div>
+</label>
+
+</div>
+<h2 class="text-2xl font-bold mb-2">Related Books</h2>
+    <ul class="related-books">
+      {% for related_book in related_books %}
+        <li><a href="{% url 'items:detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
+      {% endfor %}
+    </ul>
+</div>
 {% endblock %}
