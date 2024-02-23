@@ -1,19 +1,36 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
+
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <div class="profile">
+    {% comment %} <div class="profile">
         <div class="profile-picture">
             <img src="{% static 'profile_images/profile_picture.jpg' %}" alt="Profile Picture">
         </div>
-        <div class="profile-info">
-            <h1>{{ user_profile.name }}</h1>
-            <p>Email: {{ user_profile.email }}</p>
-            <p>Place: {{ user_profile.place }}</p>
-            <p>Interests: {{ user_profile.interests }}</p>
-            <p>About : {{ user_profile.about_me }}</p>
-            <p>Language :{{user_profile.language }}</p>
+        
+    </div> {% endcomment %}
+    <div class="container">
+        <div class="profile-box">
+            <img src="{% static 'images/menu.png' %}" class="menu-icon">
+            <img src="{% static 'images/setting.png' %}" class="setting-icon">
+            <img src="{% static 'images/profile_pic.png' %}" class="profile_pic">
+            <h3>Jack Nicholson</h3>
+            <p>Computer Enginnering student at COEP</p>
+            <div>
+                <button type = "button">Follow</button>
+                <div class="profile-bottom">
+                    <div class="profile-info">
+                        <h1>{{ user_profile.name }}</h1>
+                        <p>Email: {{ user_profile.email }}</p>
+                        <p>Place: {{ user_profile.place }}</p>
+                        <p>Interests: {{ user_profile.interests }}</p>
+                        <p>About : {{ user_profile.about_me }}</p>
+                        <p>Language :{{user_profile.language }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
