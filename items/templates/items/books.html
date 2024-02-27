@@ -2,6 +2,7 @@
 {% block title %}Books{% endblock %}
 
 {% block content %}
+
   <h1 class="section-title">Books</h1>
   <form class="content" action="{% url 'items:books' %}" method="get">
     <input class="custom-form-input" type="text" name="query" placeholder="Search by title or author" value="{{ query }}">
