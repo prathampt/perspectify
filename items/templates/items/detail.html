@@ -1,5 +1,6 @@
-{% extends 'items/base.html' %}
-{% block title %}Book Detail{% endblock %}
+{% comment %} {% extends 'items/base.html' %}  {% endcomment %}
+{% load static %}
+{% comment %} {% block title %}Book Detail{% endblock %} {% endcomment %}
 
 {% comment %} {% block content %}
   <div class="book-detail bg-white p-8 rounded-lg shadow-md">
@@ -28,6 +29,17 @@
 {% endblock %} {% endcomment %}
 
 {% block content %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'items/book.css' %}" />
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+</head>
+<div class="hover-header" id="hoverHeader">Hover me! <button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
 <div class="cover">
   <div class="book">
     
@@ -49,6 +61,7 @@
         <span class="page__content-blockquote-reference">Encyclopedia Galactica*</span>
       </div> {% endcomment %}
       <div class="page__content-text">
+        
         <p class="text-lg text-gray-600 mb-4">{{ book.description }}</p></div>
       <div class="page__number">3</div>
     </div>
@@ -103,12 +116,35 @@
   </div>
 </label>
 
-</div>
+{% comment %} <div>
 <h2 class="text-2xl font-bold mb-2">Related Books</h2>
     <ul class="related-books">
       {% for related_book in related_books %}
         <li><a href="{% url 'items:book_detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
       {% endfor %}
     </ul>
-</div>
+</div> {% endcomment %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("mousemove", function(e) {
+      var hoverHeader = document.getElementById("hoverHeader");
+      var distanceFromTop = e.clientY;
+
+      var threshold = 100;
+
+      if (distanceFromTop < threshold) {
+        hoverHeader.classList.add("visible");
+      } else {
+        hoverHeader.classList.remove("visible");
+      }
+    });
+  });
+
+
+  function toggleReadingMode() {
+    document.body.classList.toggle("reading-mode");
+  }
+
+  
+</script>
 {% endblock %}

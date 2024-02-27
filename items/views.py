@@ -23,6 +23,7 @@ def books(request):
 
         books = books.filter(query_filter)
 
+
     return render(request, 'items/books.html', {
         'books': books,
         'query': query,
