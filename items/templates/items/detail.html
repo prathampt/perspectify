@@ -120,7 +120,7 @@
 <h2 class="text-2xl font-bold mb-2">Related Books</h2>
     <ul class="related-books">
       {% for related_book in related_books %}
-        <li><a href="{% url 'items:detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
+        <li><a href="{% url 'items:book_detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
       {% endfor %}
     </ul>
 </div> {% endcomment %}

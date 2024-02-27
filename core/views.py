@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as user_logout
+from .models import UserProfile
 
 from .forms import SignupForm
 
@@ -17,9 +18,18 @@ def signup(request):
         form = SignupForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            # Save the User object
+            user = form.save()
 
-            return redirect('/core/login/')
+            # Create UserProfile instance and associate it with the User
+            user_profile = user.userprofile
+            user_profile.place = form.cleaned_data['place']
+            user_profile.interests = form.cleaned_data['interests']
+            user_profile.about_me = form.cleaned_data['about_me']
+            user_profile.language = form.cleaned_data['language']
+            user_profile.save()
+
+            return redirect('/core/login/') 
     else:
         form = SignupForm()
 
@@ -32,4 +42,6 @@ def logout(request):
     return redirect('/core/login/')
 
 def profile(request):
-    return render(request, 'core/profile.html', {'user_profile': request.user})
+    user_profile = UserProfile.objects.get(user=request.user)
+    print(user_profile)
+    return render(request, 'core/profile.html', {'user_profile': user_profile})

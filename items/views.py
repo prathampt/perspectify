@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Book
+from .models import Category, Book, Genre
 from .forms import AddBookForm, EditBookForm
 
 def books(request):
