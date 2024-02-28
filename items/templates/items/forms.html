@@ -21,7 +21,6 @@
           {% for category_id, category_name in form.category.field.choices %}
             <option value="{{ category_id }}">{{ category_name }}</option>
           {% endfor %}
-          <option value="new_category">Add New Category</option>
         </select>
         <input type="text" name="new_category" id="new_category_input" style="display: none;" placeholder="Enter new category">
       </div>
@@ -32,7 +31,6 @@
           {% for genre_id, genre_name in form.genre.field.choices %}
             <option value="{{ genre_id }}">{{ genre_name }}</option>
           {% endfor %}
-          <option value="new_genre">Add New Genre</option>
         </select>
         <input type="text" name="new_genre" id="new_genre_input" style="display: none;" placeholder="Enter new genre">
       </div>
@@ -49,23 +47,4 @@
     </form>
   </div>
 
-  <script>
-    document.getElementById('id_category').addEventListener('change', function() {
-      var selectedValue = this.value;
-      if (selectedValue === 'new_category') {
-        document.getElementById('new_category_input').style.display = 'block';
-      } else {
-        document.getElementById('new_category_input').style.display = 'none';
-      }
-    });
-
-    document.getElementById('id_genre').addEventListener('change', function() {
-      var selectedValue = this.value;
-      if (selectedValue === 'new_genre') {
-        document.getElementById('new_genre_input').style.display = 'block';
-      } else {
-        document.getElementById('new_genre_input').style.display = 'none';
-      }
-    });
-  </script>
 {% endblock %}
