@@ -23,7 +23,9 @@ def signup(request):
 
             # Create UserProfile instance and associate it with the User
             user_profile = user.userprofile
-            user_profile.place = form.cleaned_data['place']
+            user_profile.name = form.cleaned_data['name']
+            user_profile.username = form.cleaned_data['username']
+            user_profile.email = form.cleaned_data['email']
             user_profile.interests = form.cleaned_data['interests']
             user_profile.about_me = form.cleaned_data['about_me']
             user_profile.language = form.cleaned_data['language']

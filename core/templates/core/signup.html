@@ -38,11 +38,6 @@
             {{ form.password2 }}
             <span id="password2Error" class="error-message"></span>
         </div>
-        <div class="form-group">
-            <label class="form-label">Place</label><br>
-            {{ form.place }}
-            <span id="locationError" class="error-message"></span>
-        </div>
 
         <div class="form-group">
             <label class="form-label">Interest</label><br>
@@ -81,7 +76,6 @@
         var emailField = document.getElementById('{{ form.email.id_for_label }}');
         var passwordField = document.getElementById('{{ form.password1.id_for_label }}');
         var password2Field = document.getElementById('{{ form.password2.id_for_label }}');
-        var placeField = document.getElementById('{{ form.place.id_for_label }}');
         var interestsField = document.getElementById('{{ form.interests.id_for_label }}');
         var aboutMeField = document.getElementById('{{ form.about_me.id_for_label }}');
         var languageField = document.getElementById('{{ form.language.id_for_label }}');
@@ -107,15 +101,6 @@
             event.preventDefault();
         } else {
             password2Error.innerHTML = '';
-        }
-
-        // Add validation for place, interests, about me, and language fields here
-        // Example validation for minimum length
-        if (placeField.value.length < 5) {
-            locationError.innerHTML = 'Place must be at least 5 characters.';
-            event.preventDefault();
-        } else {
-            locationError.innerHTML = ''; 
         }
 
         if (interestsField.value.length < 5) {
