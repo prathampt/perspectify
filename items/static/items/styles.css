@@ -1,0 +1,147 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fffdf7; /* Light Peach Fuzz */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 2px solid #f5e4d6; /* Light Peach Fuzz */
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e07b6e; /* Coral Pink */
+}
+
+.menu {
+    display: flex;
+    gap: 1rem;
+}
+
+.menu-item {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #e07b6e; /* Coral Pink */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #f5e4d6; /* Light Peach Fuzz */
+}
+
+.content {
+    padding: 1rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f5e4d6; /* Light Peach Fuzz */
+    color: #4f4846; /* Dark Taupe */
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #e07b6e; /* Coral Pink */
+}
+
+.section-text {
+    font-size: 1rem;
+    color: #4f4846; /* Dark Taupe */
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #4f4846; /* Dark Taupe */
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+    color: #e07b6e; /* Coral Pink */
+}
+
+/* Login and Signup Containers */
+.login-container,
+.signup-container {
+    width: 50%;
+    margin: 6rem auto;
+    padding: 6rem;
+    background-color: #fffdf7; /* Light Peach Fuzz */
+    border-radius: 1rem;
+}
+
+.login-heading,
+.signup-heading {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: #e07b6e; /* Coral Pink */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: #e07b6e; /* Coral Pink */
+}
+
+.error-container {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: #fce1da; /* Peach */
+    border-radius: 1rem;
+}
+
+/* Form Input and Button */
+.custom-form-input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    border: 1px solid #e07b6e; /* Coral Pink */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.custom-form-input::placeholder {
+    color: #e07b6e; /* Coral Pink */
+}
+
+.custom-form-input:focus {
+    outline: none;
+    border-color: #f5e4d6; /* Light Peach Fuzz */
+}
+
+.submit-button {
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    background-color: #e07b6e; /* Coral Pink */
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #f5e4d6; /* Light Peach Fuzz */
+}

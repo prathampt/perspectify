@@ -49,8 +49,8 @@
           <li>
             <a href="{% url 'core:contact' %}" class="menu-link">Contact</a>
           </li>
-          <li><a href="#" class="menu-link">Privacy policy</a></li>
-          <li><a href="#" class="menu-link">Term of use</a></li>
+          <li><a href="{% url 'core:privacyPolicy' %}" class="menu-link">Privacy policy</a></li>
+          {% comment %} <li><a href="{% url 'core:termOfUse' %}" class="menu-link">Term of use</a></li> {% endcomment %}
         </ul>
       </div>
     </footer>

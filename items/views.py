@@ -11,7 +11,7 @@ def books(request):
 
     books = Book.objects.all()
 
-    if category_id:
+    if category_id and category_id != "0":
         books = books.filter(category_id=category_id)
 
     if query:

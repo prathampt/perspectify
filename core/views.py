@@ -13,6 +13,9 @@ def contact(request):
 def about(request):
     return render(request, 'core/about.html')
 
+def privacyPolicy(request):
+    return render(request, 'core/privacyPolicy.html')
+
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
