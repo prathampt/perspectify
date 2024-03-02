@@ -8,85 +8,29 @@
   <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
 </head>
 <div class="hover-header" id="hoverHeader">Hover me! <button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
-<div class="cover">
+<div id="content" style="display: none">{{ book.description }}</div>
   <div class="book">
-    
-  <label for="page-1"  class="book__page book__page--1">
-    {% if book.image %}
-      <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image mb-4 rounded-lg">
-    {% else %}
-      <p class="text-lg text-gray-600">No image available</p>
-    {% endif %}
-  </label>
-  
-  <label for="page-2" class="book__page book__page--4">
-    <div class="page__content">
 
-      <div class="page__content-text">
-        
-        <p class="text-lg text-gray-600 mb-4">{{ book.description }}</p></div>
-      <div class="page__number">3</div>
-    </div>
-  </label>
-    
-  <!-- Resets the page -->
-<input type="radio" name="page" id="page-1"/>
-
-<!-- Goes to the second page -->
-<input type="radio" name="page" id="page-2" checked/> <!-- Make sure the correct page is checked -->
-
-<label class="book__page book__page--2">
-  <div class="book__page-front">
-    <div class="page__content">
-      <!-- Book title -->
-      <h1 class="page__content-book-title">{{ book.title }}</h1>
-      
-      <!-- Author -->
-      <h2 class="page__content-author">Author: {{ book.author }}</h2>
-      
-      <!-- Introduction credit -->
-      <p class="page__content-credits">Introduction by <span>{{ book.introduction_author }}</span></p>
-      
-      <!-- Illustration credit -->
-      <p class="page__content-credits">Illustrations by <span>{{ book.illustrator }}</span></p>
-      
-      <!-- Copyright information -->
-      <div class="page__content-copyright">
-        <p>{{ book.publisher }}</p>
-        <p>{{ book.publisher_location }} - {{ book.published_year }}</p>
+    <div class="page">
+      <div class="front cover">
+        <h1>{{book.title}}</h1>
+        <p>2024.<br>First edition</p>
+      </div>
+      <div class="back">
+        <h2>{{book.author}}</h2>
       </div>
     </div>
-  </div>
-  <div class="book__page-back">
-    <div class="page__content">
-      <!-- Contents -->
-      <h1 class="page__content-title">Contents</h1>
-      <table class="page__content-table">
-        <!-- Contents table -->
-        {% for part in book.contents %}
-          <tr>
-            <td align="left">{{ part.part_number }}</td>
-            <td align="left">{{ part.part_title }}</td>
-            <td align="right">{{ part.page_number }}</td>
-          </tr>
-        {% endfor %}
-      </table>
-      
-      <!-- Page number -->
-      <div class="page__number">2</div>
+  
+    <div class="page">
+      <div class="front">
+        <img src="{{book.image.url}}" alt="Img 1">
+      </div>
+      <div class="back">
+      </div>
     </div>
-  </div>
-</label>
-
-{% comment %} <div>
-<h2 class="text-2xl font-bold mb-2">Related Books</h2>
-    <ul class="related-books">
-      {% for related_book in related_books %}
-        <li><a href="{% url 'items:book_detail' related_book.pk %}" class="text-blue-500 hover:underline">{{ related_book.title }}</a></li>
-      {% endfor %}
-    </ul>
-</div> {% endcomment %}
+</div>
 <script>
+
   document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("mousemove", function(e) {
       var hoverHeader = document.getElementById("hoverHeader");
@@ -107,6 +51,117 @@
     document.body.classList.toggle("reading-mode");
   }
 
+
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0);
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
   
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+  function divideDescription(bookDescription) {
+    const words = bookDescription.split(/\s+/);
+    const parts = [];
+    let currentPart = '';
+    let wordCount = 0;
+  
+    for (const word of words) {
+      if (wordCount >= 250) {
+        parts.push({ part: currentPart.trim() });
+        currentPart = '';
+        wordCount = 0;
+      }
+  
+      currentPart += word + ' ';
+      wordCount++;
+    }
+  
+    if (currentPart.trim() !== '') {
+      parts.push({ part: currentPart.trim() });
+    }
+
+    const pairedParts = [];
+    for (let i = 0; i < parts.length; i += 2) {
+      const pair = { part1: parts[i].part, part2: (parts[i + 1] || {}).part || '' };
+      pairedParts.push(pair);
+    }
+  
+    return pairedParts;
+  }
+  
+  
+
+function generatePages(contentArray) {
+  const bookContainer = document.querySelector('.book');
+
+  contentArray.forEach((content, idx) => {
+
+    console.log(content);
+    const page = document.createElement('div');
+    page.classList.add('page');
+    page.style.setProperty('--i', 3 + idx);
+    const front = document.createElement('div');
+    front.classList.add('front');
+
+    const frontContent = document.createElement('p');
+    frontContent.textContent = content.part1;
+    front.appendChild(frontContent);
+
+    const back = document.createElement('div');
+    back.classList.add('back');
+
+    const backContent = document.createElement('p');
+    backContent.textContent = content.part2;
+    back.appendChild(backContent);
+
+    page.appendChild(front);
+    page.appendChild(back);
+
+    bookContainer.appendChild(page);
+
+  });
+
+
+  const page = document.createElement('div');
+  page.classList.add('page');
+
+  const front = document.createElement('div');
+  front.classList.add('front');
+  front.innerHTML = 'Thank You!';
+
+  const back = document.createElement('div');
+  back.classList.add('back');
+  back.classList.add('cover');
+
+  const backContent = `
+    <h3>That's all, folks</h3>
+    <p>FlipBook code and content:<br>
+      <a href="https://stackoverflow.com/users/383904/roko-c-buljan" target="_blank" rel="nofollow">Roko C. Buljan</a><br>
+      Original idea:<br>
+      <a href="https://stackoverflow.com/a/76978444/383904" target="_blank" rel="nofollow">Stack Overflow answer</a><br>
+      Images by: picsum.photos
+    </p>
+  `;
+  back.innerHTML = backContent;
+  page.appendChild(front);
+  page.appendChild(back);
+  bookContainer.appendChild(page);
+  document.querySelectorAll(".book").forEach(flipBook);
+}
+
+const contentContainer = document.getElementById('content');
+const bookDescription = contentContainer.textContent;
+const descriptionParts = divideDescription(bookDescription);
+console.log(descriptionParts)
+generatePages(descriptionParts);
+
 </script>
+</body>
 {% endblock %}
