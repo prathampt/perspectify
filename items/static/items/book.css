@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap");
 
 :root {
-  --body-bg: #FAFAFA;
-  --page-bg: #F5F5F5;
+  --body-bg: #0000ff;
+  --page-bg: #ff0000;
   --dark-text: #2A2935;
   --baseline: 12px;
   --book-title: "Tulpen One", sans-serif;
@@ -39,12 +39,12 @@
 
 
 body{
-  background-color: #2A2935 !important;
+  background-color: #0000ff !important;
 }
 
 
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; 
 
 
 
@@ -67,6 +67,7 @@ body {
   margin: auto;
   width: 400px;
   min-width: 400px;
+  height: 578px;
   pointer-events: none;
   transform-style: preserve-3d;
   transition: translate 1s;
@@ -79,7 +80,7 @@ body {
   flex: none;
   display: flex;
   width: 100%;
-  font-size: 2cqmin;
+  font-size: .84rem;
   pointer-events: all;
   user-select: none;
   transform-style: preserve-3d;

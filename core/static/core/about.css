@@ -1,0 +1,45 @@
+/* Styles for About page */
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 10 auto;
+    padding: 20px;
+    ;
+  }
+  
+  /* Heading */
+  h1 {
+    text-align: center;
+    color: #e07b6e;
+    font-size: 36px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  /* Paragraph */
+  p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  
+  /* Signature */
+  p.signature {
+    margin-top: 40px;
+  }
+  
+  /* Link */
+  a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #0056b3;
+  }
+  

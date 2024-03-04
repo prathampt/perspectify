@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="{% static 'items/book.css' %}" />
     <link rel="stylesheet" href="{% static 'items/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'items/card.css' %}" />
+    <link rel="stylesheet" href="{% static 'items/authors.css' %}" />
     <title>{% block title %}{% endblock %} | Perspectify</title>
   </head>
 
   <body>
     <nav class="navbar">
       <a href="/" class="logo">Perspectify</a>
-
       <div class="menu">
         {% if request.user.is_authenticated %}
         <a href="{% url 'items:books' %}" class="menu-item">Books</a>
