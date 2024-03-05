@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap");
 
 :root {
-  --body-bg: #FAFAFA;
-  --page-bg: #F5F5F5;
+  --body-bg: #0000ff;
+  --page-bg: #ff0000;
   --dark-text: #2A2935;
   --baseline: 12px;
   --book-title: "Tulpen One", sans-serif;
@@ -39,12 +39,12 @@
 
 
 body{
-  background-color: #2A2935 !important;
+  background-color:  #FAF5E9!important;
 }
 
 
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; 
 
 
 
@@ -57,8 +57,9 @@ body {
   flex-direction: column;
   font: 1em/1.4 "Poppins", sans-serif;
   overflow: scroll;
-  color: hsl(180 68% 5%);
-  background-image: radial-gradient(circle farthest-corner at 50% 50%, hsl(187 20% 88%) 30%, hsl(149 20% 94%) 100%);
+  background-image: #FAF5E9;
+  /* color: hsl(180 68% 5%); */
+  /* background-image: radial-gradient(circle farthest-corner at 50% 50%, hsl(187 20% 88%) 30%, hsl(149 20% 94%) 100%); */
 }
 
 .book {
@@ -67,6 +68,7 @@ body {
   margin: auto;
   width: 400px;
   min-width: 400px;
+  height: 578px;
   pointer-events: none;
   transform-style: preserve-3d;
   transition: translate 1s;
@@ -79,7 +81,7 @@ body {
   flex: none;
   display: flex;
   width: 100%;
-  font-size: 2cqmin;
+  font-size: .84rem;
   pointer-events: all;
   user-select: none;
   transform-style: preserve-3d;
@@ -99,7 +101,7 @@ body {
   width: 100%;
   backface-visibility: hidden;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
   translate: 0px;
 }
 
@@ -170,5 +172,7 @@ body {
   background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%),
     hsl(231, 32%, 29%) url("https://picsum.photos/id/984/800/900") 50% / cover;
   color: hsl(200 30% 98%);
+}
+
 }
 
