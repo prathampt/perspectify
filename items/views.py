@@ -1,18 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Book, Genre
+from .models import Genre, Book
 from .forms import AddBookForm, EditBookForm
 
 def books(request):
-    categories = Category.objects.all()
-    category_id = request.GET.get('category', 0)
+    genres = Genre.objects.all()
+    genre_id = request.GET.get('genre', 0)
     query = request.GET.get('query', '')
 
     books = Book.objects.all()
 
-    if category_id and category_id != "0":
-        books = books.filter(category_id=category_id)
+    if genre_id and genre_id != "0":
+        books = books.filter(genre__id=genre_id)
 
     if query:
         query_words = query.split()
@@ -27,8 +27,8 @@ def books(request):
     return render(request, 'items/books.html', {
         'books': books,
         'query': query,
-        'categories': categories,
-        'category_id': int(category_id)
+        'genres': genres,
+        'genre_id': int(genre_id)
     })
 
 def book_detail(request, pk):
@@ -46,11 +46,17 @@ def add_book(request):
         form = AddBookForm(request.POST, request.FILES)
 
         if form.is_valid():
+            print("The form is valid")
             book = form.save(commit=False)
             book.created_by = request.user
             book.save()
+            genres = request.POST.getlist('genres')
+            book.genre.set(genres)
 
             return redirect('items:book_detail', pk=book.pk)
+        else:
+            print("The form is not valid")
+            print(form.errors)
     else:
         form = AddBookForm()
 
@@ -67,7 +73,12 @@ def edit_book(request, pk):
         form = EditBookForm(request.POST, request.FILES, instance=book)
 
         if form.is_valid():
-            form.save()
+            edited_book = form.save(commit=False)
+            edited_book.save()  # Save the book instance first to ensure it has a primary key
+
+            # Update the genres
+            genres = request.POST.getlist('genres')
+            edited_book.genre.set(genres)
 
             return redirect('items:book_detail', pk=book.pk)
     else:
@@ -77,6 +88,7 @@ def edit_book(request, pk):
         'form': form,
         'title': 'Edit Book',
     })
+
 
 @login_required
 def delete_book(request, pk):

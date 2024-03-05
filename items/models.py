@@ -1,16 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name_plural = 'Categories'
-    
-    def __str__(self):
-        return self.name
-
 class Genre(models.Model):
     name = models.CharField(max_length=255)
 
@@ -24,8 +14,7 @@ class Genre(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, related_name='books', on_delete=models.CASCADE)
-    genre = models.ManyToManyField(Genre, related_name='books')
+    genre = models.ManyToManyField(Genre, related_name='books', blank=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='book_images', blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='books', on_delete=models.CASCADE)

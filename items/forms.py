@@ -4,7 +4,7 @@ from .models import Book
 class AddBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('title', 'author', 'category', 'genre', 'description', 'image',)
+        fields = ('title', 'author', 'genre', 'description', 'image',)
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'custom-form-input',
@@ -13,9 +13,6 @@ class AddBookForm(forms.ModelForm):
             'author': forms.TextInput(attrs={
                 'class': 'custom-form-input',
                 'placeholder': 'Enter author'
-            }),
-            'category': forms.Select(attrs={
-                'class': 'custom-form-input'
             }),
             'genre': forms.SelectMultiple(attrs={
                 'class': 'custom-form-input'
@@ -33,7 +30,7 @@ class AddBookForm(forms.ModelForm):
 class EditBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('title', 'author', 'category', 'genre', 'description', 'image',)
+        fields = ('title', 'author', 'genre', 'description', 'image',)
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'custom-form-input',
@@ -42,9 +39,6 @@ class EditBookForm(forms.ModelForm):
             'author': forms.TextInput(attrs={
                 'class': 'custom-form-input',
                 'placeholder': 'Enter author'
-            }),
-            'category': forms.Select(attrs={
-                'class': 'custom-form-input'
             }),
             'genre': forms.SelectMultiple(attrs={
                 'class': 'custom-form-input'

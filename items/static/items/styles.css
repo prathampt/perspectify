@@ -145,3 +145,53 @@ body {
 .submit-button:hover {
     background-color: #f5e4d6; /* Light Peach Fuzz */
 }
+
+/* Form Group and Custom Form Input for Genre Selection */
+.genre-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.genre-form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: #e07b6e; /* Coral Pink */
+}
+
+.genre-select {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    border: 1px solid #e07b6e; /* Coral Pink */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.genre-select:focus {
+    outline: none;
+    border-color: #f5e4d6; /* Light Peach Fuzz */
+}
+
+/* Placeholder styling for genre select */
+.genre-select option[value=""] {
+    color: #e07b6e; /* Coral Pink */
+}
+
+.genre-select option {
+    color: #4f4846; /* Dark Taupe */
+}
+
+.genre-submit-button {
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    background-color: #e07b6e; /* Coral Pink */
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.genre-submit-button:hover {
+    background-color: #f5e4d6; /* Light Peach Fuzz */
+}

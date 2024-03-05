@@ -1,9 +1,5 @@
 from django.contrib import admin
-from .models import Category, Genre, Book, UserBook
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+from .models import Genre, Book, UserBook
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -11,8 +7,8 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'category', 'created_by', 'created_at')
-    list_filter = ('category', 'genre', 'created_by')
+    list_display = ('title', 'author', 'created_by', 'created_at')
+    list_filter = ('genre', 'created_by')
     search_fields = ('title', 'author')
 
 @admin.register(UserBook)

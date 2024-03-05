@@ -14,26 +14,15 @@
         <label class="form-label" for="id_author">Author:</label>
         {{ form.author }}
       </div>
-      <div class="form-group">
-        <label class="form-label" for="id_category">Category:</label>
-        <select name="category" id="id_category">
-          <option value="">Choose category</option>
-          {% for category_id, category_name in form.category.field.choices %}
-            <option value="{{ category_id }}">{{ category_name }}</option>
-          {% endfor %}
+      <div class="genre-form-group">
+        <label for="id_genre" class="genre-form-label">Genre:</label>
+        <select name="genres" id="id_genre" multiple class="genre-select">
+            {% for genre_id, genre_name in form.fields.genre.choices %}
+                <option value="{{ genre_id }}">{{ genre_name }}</option>
+            {% endfor %}
         </select>
-        <input type="text" name="new_category" id="new_category_input" style="display: none;" placeholder="Enter new category">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="id_genre">Genre:</label>
-        <select name="genre" id="id_genre">
-          <option value="">Choose genre</option>
-          {% for genre_id, genre_name in form.genre.field.choices %}
-            <option value="{{ genre_id }}">{{ genre_name }}</option>
-          {% endfor %}
-        </select>
-        <input type="text" name="new_genre" id="new_genre_input" style="display: none;" placeholder="Enter new genre">
-      </div>
+    </div>
+ 
       <div class="form-group">
         <label class="form-label" for="id_description">Description:</label>
         {{ form.description }}
