@@ -6,10 +6,10 @@
   <h1 class="section-title">Books</h1>
   <form class="content" action="{% url 'items:books' %}" method="get">
     <input class="custom-form-input" type="text" name="query" placeholder="Search by title or author" value="{{ query }}">
-    <select class="custom-form-input" name="category">
-      <option value="0">All categories</option>
-      {% for category in categories %}
-        <option value="{{ category.id }}" {% if category.id == category_id %}selected{% endif %}>{{ category.name }}</option>
+    <select class="custom-form-input" name="genre">
+      <option value="0">All Generes </option>
+      {% for genre in genres %}
+        <option value="{{ genre.id }}" {% if genre.id == genre_id %}selected{% endif %}>{{ genre.name }}</option>
       {% endfor %}
     </select>
     <button class="submit-button" type="submit">Search</button>
