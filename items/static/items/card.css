@@ -4,8 +4,8 @@
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    width: 20%;
-    height: 40vh;
+    width: 40%;
+    height: 50%;
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
   }
   

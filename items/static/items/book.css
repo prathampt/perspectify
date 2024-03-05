@@ -39,7 +39,7 @@
 
 
 body{
-  background-color: #0000ff !important;
+  background-color:  #FAF5E9!important;
 }
 
 
@@ -57,8 +57,9 @@ body {
   flex-direction: column;
   font: 1em/1.4 "Poppins", sans-serif;
   overflow: scroll;
-  color: hsl(180 68% 5%);
-  background-image: radial-gradient(circle farthest-corner at 50% 50%, hsl(187 20% 88%) 30%, hsl(149 20% 94%) 100%);
+  background-image: #FAF5E9;
+  /* color: hsl(180 68% 5%); */
+  /* background-image: radial-gradient(circle farthest-corner at 50% 50%, hsl(187 20% 88%) 30%, hsl(149 20% 94%) 100%); */
 }
 
 .book {
@@ -100,7 +101,7 @@ body {
   width: 100%;
   backface-visibility: hidden;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
   translate: 0px;
 }
 
@@ -171,5 +172,7 @@ body {
   background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%),
     hsl(231, 32%, 29%) url("https://picsum.photos/id/984/800/900") 50% / cover;
   color: hsl(200 30% 98%);
+}
+
 }
 

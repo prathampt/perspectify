@@ -61,11 +61,11 @@
   
   /* TITLE SHADOWS */
   .book h1,
-  h2,
+  /* h2,
   h3,
   h5 {
     text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
-  }
+  } */
   .web .book h1,
   h3 {
     text-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.6);

@@ -17,14 +17,14 @@
 }
 
 .profile-box{
-    background: #009B4D;;
+    background: #32CD32;
     text-align: center;
     padding: 50px 150px;
     color: black;
     position: relative;
     border-radius: 25px;
 }
-.menu-icon{
+/*.menu-icon{
     width: 30px;
     position: absolute;
     left: 40px;
@@ -36,8 +36,15 @@
     position: absolute;
     right: 40px;
     top: 50px;
-}
+}*/
 
+.profile_pic{
+    width: 300px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 6px;
+    margin-top: 40px;
+}
 
 .profile-bottom{
     background-color: #fff;

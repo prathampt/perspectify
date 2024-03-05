@@ -7,8 +7,8 @@
 {% block content %}
     <div class="container">
         <div class="profile-box">
-            <img src="{% static 'images/menu.png' %}" class="menu-icon">
-            <img src="{% static 'images/setting.png' %}" class="setting-icon">
+            {% comment %} <img src="{% static 'images/menu.png' %}" class="menu-icon">
+            <img src="{% static 'images/setting.png' %}" class="setting-icon"> {% endcomment %}
             <img src="{% static 'images/profile_pic.png' %}" class="profile_pic">
             <h1>{{ user_profile.name }}</h1>
             <div>

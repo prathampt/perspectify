@@ -2,7 +2,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FAF5E9;
+    background-color: #FAF5E9; /* Light Peach Fuzz */
 
 }
 
@@ -19,7 +19,7 @@ body {
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #009B4D; /* Coral Pink */
+    color:  #03946D; /* Coral Pink */
 }
 
 .menu {
@@ -37,7 +37,7 @@ body {
 }
 
 .menu-item:hover {
-    background-color: #f5e4d6; /* Light Peach Fuzz */
+    background-color: #D0F0C0; /* Light Peach Fuzz */
 }
 
 .content {
@@ -49,7 +49,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: #f5e4d6; /* Light Peach Fuzz */
+    background-color: #D0F0C0; /* Light Peach Fuzz */
     color: #4f4846; /* Dark Taupe */
 }
 
@@ -57,7 +57,7 @@ body {
 .section-title {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: #e07b6e; /* Coral Pink */
+    color: #009B4D; /* Coral Pink */
 }
 
 .section-text {
@@ -78,7 +78,7 @@ body {
 }
 
 .menu-link:hover {
-    color: #e07b6e; /* Coral Pink */
+    color: #009B4D; /* Coral Pink */
 }
 
 /* Login and Signup Containers */
@@ -87,7 +87,7 @@ body {
     width: 50%;
     margin: 6rem auto;
     padding: 6rem;
-    background-color: #009B4D; /* Light Peach Fuzz */
+    background-color: #03946D; /* Light Peach Fuzz */
     border-radius: 1rem;
 }
 
@@ -95,7 +95,7 @@ body {
 .signup-heading {
     margin-bottom: 2rem;
     font-size: 3rem;
-    color: #FAF5E9; /* Coral Pink */
+    color: #D0F0C0; /* Coral Pink */
 }
 
 .form-group {
@@ -105,13 +105,13 @@ body {
 .form-label {
     display: inline-block;
     margin-bottom: 0.5rem;
-    color: #FAF5E9; /* Coral Pink */
+    color: #009B4D; /* Coral Pink */
 }
 
 .error-container {
     margin-bottom: 1.5rem;
     padding: 1.5rem;
-    background-color: #fce1da; /* Peach */
+    background-color: #D0F0C0; /* Peach */
     border-radius: 1rem;
 }
 
@@ -138,9 +138,9 @@ body {
 .submit-button {
     padding: 1.5rem 3rem;
     font-size: 1.5rem;
-    background-color: #FAF5E9; /* Coral Pink */
+    background-color: white; /* Coral Pink */
     color: grey;
-    border: none;
+    border: none ;
     border-radius: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
