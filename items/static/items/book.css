@@ -58,7 +58,6 @@ body {
   font: 1em/1.4 "Poppins", sans-serif;
   overflow: scroll;
   color: hsl(180 68% 5%);
-  background-image: radial-gradient(circle farthest-corner at 50% 50%, hsl(187 20% 88%) 30%, hsl(149 20% 94%) 100%);
 }
 
 .book {
@@ -67,6 +66,7 @@ body {
   margin: auto;
   width: 400px;
   min-width: 400px;
+  height: 578px;
   pointer-events: none;
   transform-style: preserve-3d;
   transition: translate 1s;
@@ -79,7 +79,7 @@ body {
   flex: none;
   display: flex;
   width: 100%;
-  font-size: 2cqmin;
+  font-size: .84rem;
   pointer-events: all;
   user-select: none;
   transform-style: preserve-3d;
