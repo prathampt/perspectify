@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{% static 'items/book.css' %}" />
   <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
 </head>
-<div class="hover-header" id="hoverHeader">Hover me! <button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
+<div class="hover-header" id="hoverHeader"><button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
 <div id="content" style="display: none">{{ book.description }}</div>
   <div class="book">
 
@@ -142,12 +142,8 @@ function generatePages(contentArray) {
 
   const backContent = `
     <h3>That's all, folks</h3>
-    <p>FlipBook code and content:<br>
-      <a href="https://stackoverflow.com/users/383904/roko-c-buljan" target="_blank" rel="nofollow">Roko C. Buljan</a><br>
-      Original idea:<br>
-      <a href="https://stackoverflow.com/a/76978444/383904" target="_blank" rel="nofollow">Stack Overflow answer</a><br>
-      Images by: picsum.photos
-    </p>
+    <br>
+    <h2>Thanks a lot...</h2>
   `;
   back.innerHTML = backContent;
   page.appendChild(front);

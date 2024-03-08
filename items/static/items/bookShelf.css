@@ -1,0 +1,43 @@
+#shelf {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    flex-wrap: wrap; /* Allow wrapping to fit all books in a single line */
+}
+
+.book-bg {
+    overflow: hidden;
+    height: 32rem; /* Keep the height */
+    width: calc(8.33% - 4px); /* Adjust the width to fit 12 books in a single line */
+    margin: 2px;
+    cursor: pointer;
+    transition: margin 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    filter: grayscale(25%);
+    border-radius: 4px;
+    background: grey;
+    box-shadow: 0 0.5rem 1rem 0rem rgba(0, 0, 0, 0.4);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-image: linear-gradient(to right, #333, #333 15%, antiquewhite 30%, antiquewhite 70%, #333 85%, #333);
+    border-image-slice: 1;
+    order: 200;
+    display: inline-block; /* Display as inline-block */
+}
+
+.book-bg:hover {
+    box-shadow: 0 0.5rem 3rem -0.5rem rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    margin-top: -15px;
+    transform: scale(1.03, 1.03);
+}
+
+.book {
+    align-items: center;
+    background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)), radial-gradient(ellipse at bottom, rgba(70, 70, 70, 0.5), transparent);
+    font-family: "Unica One", cursive;
+    color: darkorange;
+    text-align: center; /* Center-align the text */
+    padding: 10px; /* Add padding for better spacing */
+    height: 100%; /* Ensure the content takes up full height */
+    width: 100%; /* Ensure the content takes up full width */
+}

@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Genre, Book
 from .forms import AddBookForm, EditBookForm
+from .scripy import add_books_from_json
+import json, os
 
 def books(request):
     genres = Genre.objects.all()
@@ -94,5 +96,17 @@ def edit_book(request, pk):
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk, created_by=request.user)
     book.delete()
+
+    return redirect('items:books')
+
+def automation(request):
+    folder_path = 'items/data/'
+
+    json_files = [f for f in os.listdir(folder_path) if f.endswith('.json')]
+
+    for json_file in json_files:
+        with open(os.path.join(folder_path, json_file), 'r') as f:
+            data = json.load(f)
+            add_books_from_json(data)
 
     return redirect('items:books')
