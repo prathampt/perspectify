@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load custom_filters %}
+
 {% block title %}Books{% endblock %}
 
 {% block content %}
@@ -56,7 +58,20 @@
     </div>
     <h5 class="card-title">{{ book.title }}</h5>
     <p class="card-text">Author: {{ book.author }}</p>
-    
+
+    {% if request.user.is_authenticated %}
+      {% if request.user|is_book_saved:book %}
+        <form action="{% url 'items:unsave_book' book.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Unsave Book</button>
+        </form>
+      {% else %}
+        <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Save Book</button>
+        </form>
+      {% endif %}
+    {% endif %}
     
     {% endfor %}
     

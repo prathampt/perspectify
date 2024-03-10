@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Genre, Book
+from .models import Genre, Book, SaveBook
 from .forms import AddBookForm, EditBookForm
 from .scripy import add_books_from_json
 import json, os
@@ -27,13 +27,13 @@ def books(request):
 
 
     return render(request, 'items/books.html', {
-        'books': books,
+        'books': books[0:24],
         'query': query,
         'genres': genres,
         'genre_id': int(genre_id)
     })
 
-def book_detail(request, pk):
+def bookDetail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     related_books = Book.objects.filter(genre__in=book.genre.all()).exclude(pk=pk)[0:3]
 
@@ -43,7 +43,7 @@ def book_detail(request, pk):
     })
 
 @login_required
-def add_book(request):
+def addBook(request):
     if request.method == 'POST':
         form = AddBookForm(request.POST, request.FILES)
 
@@ -68,7 +68,7 @@ def add_book(request):
     })
 
 @login_required
-def edit_book(request, pk):
+def editBook(request, pk):
     book = get_object_or_404(Book, pk=pk, created_by=request.user)
 
     if request.method == 'POST':
@@ -93,11 +93,35 @@ def edit_book(request, pk):
 
 
 @login_required
-def delete_book(request, pk):
+def deleteBook(request, pk):
     book = get_object_or_404(Book, pk=pk, created_by=request.user)
     book.delete()
 
     return redirect('items:books')
+
+@login_required
+def saveBook(request, pk):
+    
+    book = get_object_or_404(Book, pk=pk)
+    user = request.user
+
+    save_book, created = SaveBook.objects.get_or_create(user=user, book=book)
+
+    return redirect('core:profile')
+
+@login_required
+def unSaveBook(request, pk):
+    book = Book.objects.get(pk=pk)
+    user = request.user
+
+    try:
+        save_book = SaveBook.objects.get(user=user, book=book)
+    except SaveBook.DoesNotExist:
+        return redirect('core:profile')
+
+    save_book.delete()
+
+    return redirect('core:profile')
 
 def automation(request):
     folder_path = 'items/data/'
