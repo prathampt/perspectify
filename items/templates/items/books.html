@@ -6,42 +6,37 @@
   <h1 class="section-title">Books</h1>
   <form class="content" action="{% url 'items:books' %}" method="get">
     <input class="custom-form-input" type="text" name="query" placeholder="Search by title or author" value="{{ query }}">
-    <select class="custom-form-input" name="category">
-      <option value="0">All categories</option>
-      {% for category in categories %}
-        <option value="{{ category.id }}" {% if category.id == category_id %}selected{% endif %}>{{ category.name }}</option>
+    <select class="custom-form-input" name="genre">
+      <option value="0">All Generes </option>
+      {% for genre in genres %}
+        <option value="{{ genre.id }}" {% if genre.id == genre_id %}selected{% endif %}>{{ genre.name }}</option>
       {% endfor %}
     </select>
     <button class="submit-button" type="submit">Search</button>
   </form>
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      {% for book in books %}
-      <div class="col mb-4">
-        <a href="{% url 'items:book_detail' book.pk %}" class="card-link" style="text-decoration: none;">
-          <div class="card h-100 shadow hover">
-            <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ book.title }}</h5>
-              <p class="card-text">Author: {{ book.author }}</p>
-              <!-- You can add more details here if needed -->
-              {% if request.user == book.created_by %}
-              <div class="d-flex justify-content-between">
-                <a href="{% url 'items:edit_book' book.pk %}" class="btn btn-primary">Edit</a>
-                <form action="{% url 'items:delete_book' book.pk %}" method="post">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-              </div>
-              {% endif %}
+  <div class="realvjy">
+  </div>
+  {% for book in books %}
+    <div class="book-wrapper">
+      <a href="{% url 'items:book_detail' book.pk %}">      
+      <div class="book-items">
+        <div class="main-book-wrap">
+          <div class="book-cover">
+            <div class="book-inside"></div>
+            <div class="book-image">
+              <img src="{{ book.image.url }}">
+              <div class="effect"></div>
+              <div class="light"></div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
-      {% endfor %}
     </div>
-  </div>
-  
-  
+    <h5 class="card-title">{{ book.title }}</h5>
+    <p class="card-text">Author: {{ book.author }}</p>
+    
+    
+    {% endfor %}
+    
   
 {% endblock %}
