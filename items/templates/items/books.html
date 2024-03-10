@@ -16,6 +16,7 @@
   </form>
   <div class="realvjy">
   </div>
+  <div class = "book-container">
   {% for book in books %}
     <div class="book-wrapper">
       <a href="{% url 'items:book_detail' book.pk %}">      
@@ -31,12 +32,13 @@
           </div>
         </div>
       </div>
+
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text">Author: {{ book.author }}</p>
     </div>
-    <h5 class="card-title">{{ book.title }}</h5>
-    <p class="card-text">Author: {{ book.author }}</p>
-    
     
     {% endfor %}
+  </div>
     
   
 {% endblock %}
