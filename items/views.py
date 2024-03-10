@@ -62,7 +62,7 @@ def addBook(request):
     else:
         form = AddBookForm()
 
-    return render(request, 'items/forms.html', {
+    return render(request, 'items/addBook.html', {
         'form': form,
         'title': 'Add Book',
     })
