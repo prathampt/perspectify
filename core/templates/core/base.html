@@ -11,10 +11,7 @@
     <link rel="stylesheet" href="{% static 'core/about.css' %}" />
     <link rel="stylesheet" href="{% static 'core/privacy_policy.css'%}" />
     <link rel="stylesheet" href="{% static 'core/contact.css'%}" />
-    <link rel="Stylesheet" href="{% static 'core/index.css'%}"/>
-    <script src="static/core/index.js"></script>
-    <script src="static/core/profile.js"></script>
-
+    <link rel="stylesheet" href="{% static 'items/bookList.css' %}" />
 
     <title>{% block title %}{% endblock %} | Perspectify</title>
   </head>
@@ -53,12 +50,15 @@
       <div class="menu-section">
         <h3 class="section-title">Menu</h3>
         <ul class="menu-list">
-          <li><a href="{% url 'core:about' %}" class="menu-link">About</a></li>
+          <li>
+            <a href="{% url 'core:about' %}" class="menu-link">About</a>
+          </li>
           <li>
             <a href="{% url 'core:contact' %}" class="menu-link">Contact</a>
           </li>
-          <li><a href="{% url 'core:privacyPolicy' %}" class="menu-link">Privacy policy</a></li>
-          {% comment %} <li><a href="{% url 'core:termOfUse' %}" class="menu-link">Term of use</a></li> {% endcomment %}
+          <li>
+            <a href="{% url 'core:privacyPolicy' %}" class="menu-link">Privacy policy</a>
+          </li>
         </ul>
       </div>
     </footer>

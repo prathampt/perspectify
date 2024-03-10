@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as user_logout
 from .models import UserProfile
+from items.models import SaveBook, Book
 
 from .forms import SignupForm
-
-def index(request):
-    return render(request, 'core/index.html')
 
 def contact(request):
     return render(request, 'core/contact.html')
@@ -48,5 +46,12 @@ def logout(request):
 
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
-    print(user_profile)
-    return render(request, 'core/profile.html', {'user_profile': user_profile})
+
+    saved_book_ids = SaveBook.objects.filter(user=request.user).values_list('book_id', flat=True)
+
+    saved_books = Book.objects.filter(pk__in=saved_book_ids)
+    
+    return render(request, 'core/profile.html', {
+        'user_profile': user_profile, 
+        'saved_books': saved_books
+    })
