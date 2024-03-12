@@ -12,6 +12,21 @@
 </head>
 <div class="hover-header" id="hoverHeader"><button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
 <div id="content" style="display: none">{{ book.description }}</div>
+{% if request.user.is_authenticated %}
+{% if request.user|is_book_saved:book %}
+  <form action="{% url 'items:unsave_book' pk=book.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Unsave Book</button>
+  </form>
+{% else %}
+  <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Save Book</button>
+  </form>
+{% endif %}
+{% else %}
+<a href="{% url 'core:login' %}">Log in to save/bookmark</a>
+{% endif %}
   <div class="book">
 
     <div class="page">
@@ -19,21 +34,6 @@
         <h1>{{book.title}}</h1>
         <p>2024.<br>First edition</p>
       </div>
-      {% if request.user.is_authenticated %}
-        {% if request.user|is_book_saved:book %}
-          <form action="{% url 'items:unsave_book' pk=book.pk %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Unsave Book</button>
-          </form>
-        {% else %}
-          <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Save Book</button>
-          </form>
-        {% endif %}
-      {% else %}
-        <a href="{% url 'core:login' %}">Log in to save/bookmark</a>
-      {% endif %}
       <div class="back">
         <h2>{{book.author}}</h2>
       </div>
