@@ -39,12 +39,8 @@
     {% block content %} {% endblock %}
 
     <footer class="footer">
-      <div class="about-section">
-        <h3 class="section-title">About</h3>
-        <p class="section-text">
-          I am making this project and will definetely make it worth...
-          Currently I am struggling with CSS a bit... hahaha...
-        </p>
+      <div class="copyright-section">
+        <p class="copyright-text">© 2024 Perspectify. All rights reserved.</p>
       </div>
       
       <div class="menu-section">
@@ -59,8 +55,11 @@
           <li>
             <a href="{% url 'core:privacyPolicy' %}" class="menu-link">Privacy policy</a>
           </li>
+
         </ul>
       </div>
+    
+      
     </footer>
   </body>
 </html>

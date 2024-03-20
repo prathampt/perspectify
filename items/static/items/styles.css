@@ -46,8 +46,10 @@ body {
 
 
 .footer {
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Center vertically */
     padding: 1rem;
     background-color: #D0F0C0; /* Light Peach Fuzz */
     color: #4f4846; /* Dark Taupe */

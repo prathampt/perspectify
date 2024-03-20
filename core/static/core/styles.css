@@ -1,9 +1,16 @@
 body {
     font-family: 'Quicksand', sans-serif;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     background-color: #FAF5E9; /* Light Peach Fuzz */
 
+}
+
+html{
+    height: 100%;
 }
 
 
@@ -46,12 +53,16 @@ body {
 
 
 .footer {
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Center vertically */
     padding: 1rem;
     background-color: #D0F0C0; /* Light Peach Fuzz */
     color: #4f4846; /* Dark Taupe */
 }
+
+
 
 
 .section-title {
@@ -87,7 +98,9 @@ body {
     width: 50%;
     margin: 6rem auto;
     padding: 6rem;
-    background-color: #03ffbc; 
+    background-color:  #D0F0C0;
+    /* RGB: (87, 200, 77)
+    CMYK: 0.565, 0, 0.615, 0.215;  */
     border-radius: 1rem;
 }
 
@@ -95,7 +108,7 @@ body {
 .signup-heading {
     margin-bottom: 2rem;
     font-size: 3rem;
-    color: #D0F0C0; /* Coral Pink */
+    color: #03946D; /* Coral Pink */
 }
 
 .form-group {

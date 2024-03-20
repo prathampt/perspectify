@@ -22,17 +22,18 @@
     border-image-slice: 1;
     order: 200;
     display: inline-block; /* Display as inline-block */
+    align-items: center; /* Center content vertically */
 }
 
 .book-bg:hover {
     box-shadow: 0 0.5rem 3rem -0.5rem rgba(0, 0, 0, 0.4);
     z-index: 10;
     margin-top: -15px;
+    margin-bottom: 10px;
     transform: scale(1.03, 1.03);
 }
 
 .book {
-    align-items: center;
     background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)), radial-gradient(ellipse at bottom, rgba(70, 70, 70, 0.5), transparent);
     font-family: "Unica One", cursive;
     color: darkorange;
