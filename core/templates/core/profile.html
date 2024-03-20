@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load custom_filters %}
+
 {% block title %}Profile{% endblock %}
 
 {% block content %}
@@ -23,5 +25,40 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+        {% for book in saved_books %}
+        <div class="book-wrapper">
+            <a href="{% url 'items:book_detail' book.pk %}">      
+            <div class="book-items">
+                <div class="main-book-wrap">
+                    <div class="book-cover">
+                        <div class="book-inside"></div>
+                            <div class="book-image">
+                            <img src="{{ book.image.url }}">
+                                <div class="effect"></div>
+                            <div class="light"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">Author: {{ book.author }}</p>  
+        {% if request.user.is_authenticated %}
+            {% if request.user|is_book_saved:book %}
+                <form action="{% url 'items:unsave_book' book.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Unsave Book</button>
+                </form>
+            {% else %}
+                <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Save Book</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}

@@ -1,21 +1,45 @@
 {% extends 'items/base.html' %}
+
+{% load static %}
+
+{% load custom_filters %}
+
 {% block title %}Books{% endblock %}
 
 {% block content %}
 
   <h1 class="section-title">Books</h1>
-  <form class="content" action="{% url 'items:books' %}" method="get">
+  <form class="content" action="{% url 'items:books' %}" method="get" id="bookSearchForm">
     <input class="custom-form-input" type="text" name="query" placeholder="Search by title or author" value="{{ query }}">
-    <select class="custom-form-input" name="genre">
-      <option value="0">All Generes </option>
-      {% for genre in genres %}
+    <select class="custom-form-input" name="genre" id="genreSelect">
+        <option value="0">All Genres</option>
+        {% for genre in genres %}
         <option value="{{ genre.id }}" {% if genre.id == genre_id %}selected{% endif %}>{{ genre.name }}</option>
-      {% endfor %}
+        {% endfor %}
     </select>
-    <button class="submit-button" type="submit">Search</button>
-  </form>
-  <div class="realvjy">
-  </div>
+
+    {% for genre in genres %}
+    <div class='book-bg landscape' onclick="selectGenre('{{ genre.id }}')">
+        <div class='book flex-column' id="book_{{ genre.id }}">
+            <div id='book-shading'></div>
+            <h1>{{ genre.name }}</h1>
+        </div>
+    </div>
+    {% endfor %}
+
+    <button class="submit-button" type="button" onclick="submitForm()">Search</button>
+</form>
+
+<script>
+    function selectGenre(genreId) {
+        document.getElementById('genreSelect').value = genreId;
+    }
+
+    function submitForm() {
+        document.getElementById('bookSearchForm').submit();
+    }
+</script>
+
   {% for book in books %}
     <div class="book-wrapper">
       <a href="{% url 'items:book_detail' book.pk %}">      
@@ -31,12 +55,16 @@
           </div>
         </div>
       </div>
+
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text">Author: {{ book.author }}</p>
     </div>
     <h5 class="card-title">{{ book.title }}</h5>
     <p class="card-text">Author: {{ book.author }}</p>
     
     
     {% endfor %}
+  </div>
     
   
 {% endblock %}

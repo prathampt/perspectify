@@ -8,7 +8,6 @@ from .forms import LoginForm
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('privacyPolicy/', views.privacyPolicy, name='privacyPolicy'),

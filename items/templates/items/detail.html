@@ -1,14 +1,32 @@
 {% load static %}
 
+{% load custom_filters %}
+
 {% block content %}
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{% static 'items/book.css' %}" />
   <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'items/bookList.css' %}" />
 </head>
-<div class="hover-header" id="hoverHeader">Hover me! <button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
+<div class="hover-header" id="hoverHeader"><button onclick="toggleReadingMode()">Toggle Reading Mode</button></div>
 <div id="content" style="display: none">{{ book.description }}</div>
+{% if request.user.is_authenticated %}
+{% if request.user|is_book_saved:book %}
+  <form action="{% url 'items:unsave_book' pk=book.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Unsave Book</button>
+  </form>
+{% else %}
+  <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Save Book</button>
+  </form>
+{% endif %}
+{% else %}
+<a href="{% url 'core:login' %}">Log in to save/bookmark</a>
+{% endif %}
   <div class="book">
 
     <div class="page">
@@ -28,6 +46,45 @@
       <div class="back">
       </div>
     </div>
+</div>
+
+<div>
+  <div>
+    {% for book in related_books %}
+      <div class="book-wrapper">
+        <a href="{% url 'items:book_detail' book.pk %}">      
+        <div class="book-items">
+          <div class="main-book-wrap">
+            <div class="book-cover">
+              <div class="book-inside"></div>
+              <div class="book-image">
+                <img src="{{ book.image.url }}">
+                <div class="effect"></div>
+                <div class="light"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text">Author: {{ book.author }}</p>
+
+      {% if request.user.is_authenticated %}
+        {% if request.user|is_book_saved:book %}
+          <form action="{% url 'items:unsave_book' book.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Unsave Book</button>
+          </form>
+        {% else %}
+          <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Save Book</button>
+          </form>
+        {% endif %}
+      {% endif %}
+      
+      {% endfor %}
+  </div>
 </div>
 <script>
 
@@ -142,12 +199,8 @@ function generatePages(contentArray) {
 
   const backContent = `
     <h3>That's all, folks</h3>
-    <p>FlipBook code and content:<br>
-      <a href="https://stackoverflow.com/users/383904/roko-c-buljan" target="_blank" rel="nofollow">Roko C. Buljan</a><br>
-      Original idea:<br>
-      <a href="https://stackoverflow.com/a/76978444/383904" target="_blank" rel="nofollow">Stack Overflow answer</a><br>
-      Images by: picsum.photos
-    </p>
+    <br>
+    <h2>Thanks a lot...</h2>
   `;
   back.innerHTML = backContent;
   page.appendChild(front);

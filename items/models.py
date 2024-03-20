@@ -23,10 +23,10 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class UserBook(models.Model):
+class SaveBook(models.Model):
     user = models.ForeignKey(User, related_name='user_books', on_delete=models.CASCADE)
     book = models.ForeignKey(Book, related_name='user_books', on_delete=models.CASCADE)
-    has_read = models.BooleanField(default=False)
+      
 
     class Meta:
         unique_together = ('user', 'book')

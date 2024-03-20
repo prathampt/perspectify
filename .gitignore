@@ -79,4 +79,5 @@ media/
 *.flac
 
 # Ignore other media formats if needed
-# Add more file extensions as necessary
+
+.json
