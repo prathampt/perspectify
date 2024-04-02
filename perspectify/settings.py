@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'api',
     'items'
 ]
 
@@ -79,7 +78,7 @@ WSGI_APPLICATION = 'perspectify.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'NAME': BASE_DIR / 'dbnew.sqlite3',
 #     }
 # }
 
