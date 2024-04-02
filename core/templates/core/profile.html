@@ -7,6 +7,42 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
+<style>
+    .cover {
+      background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%),
+        hsl(231, 32%, 29%) url('{{ book.image.url }}') 50% / cover;
+      color: hsl(200 30% 98%);
+    }
+    .recommended-books {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .recommended-books .book-wrapper {
+      width: calc(33.33% - 20px);
+      margin-bottom: 20px;
+    }
+    .recommended-books-label {
+      text-align: center;
+      margin-top: 100px; /* Increased margin-top */
+      margin-bottom: 30px; /* Increased margin-bottom */
+      font-size: 1.5em; /* Increased font size */
+    }
+    .toggle-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-right: 20px; /* Added margin */
+    }
+    .login-link {
+      color: #4CAF50;
+      margin-right: 20px; /* Added margin */
+    }
+  </style>
     <div class="container">
         <div class="profile-box">
             {% comment %} <img src="{% static 'images/menu.png' %}" class="menu-icon">
@@ -27,38 +63,45 @@
         </div>
     </div>
 
+
+
     <div>
-        {% for book in saved_books %}
-        <div class="book-wrapper">
+        <div class="recommended-books">
+          {% for book in saved_books %}
+            <div class="book-wrapper">
             <a href="{% url 'items:book_detail' book.pk %}">      
-            <div class="book-items">
+              <div class="book-items">
                 <div class="main-book-wrap">
-                    <div class="book-cover">
-                        <div class="book-inside"></div>
-                            <div class="book-image">
-                            <img src="{{ book.image.url }}">
-                                <div class="effect"></div>
-                            <div class="light"></div>
-                        </div>
+                  <div class="book-cover">
+                    <div class="book-inside"></div>
+                    <div class="book-image">
+                      <img src="{{ book.image.url }}">
+                      <div class="effect"></div>
+                      <div class="light"></div>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text">Author: {{ book.author }}</p>
+              {% if request.user.is_authenticated %}
+                {% if request.user|is_book_saved:book %}
+                    <form action="{% url 'items:unsave_book' book.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class='search'type="submit">Unsave Book</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class='search' type="submit">Save Book</button>
+                    </form>
+                {% endif %}
+                {% endif %}
             </div>
-        </div>
-        <h5 class="card-title">{{ book.title }}</h5>
-        <p class="card-text">Author: {{ book.author }}</p>  
-        {% if request.user.is_authenticated %}
-            {% if request.user|is_book_saved:book %}
-                <form action="{% url 'items:unsave_book' book.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Unsave Book</button>
-                </form>
-            {% else %}
-                <form action="{% url 'items:save_book' pk=book.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Save Book</button>
-                </form>
+            {% if forloop.counter|divisibleby:3 %}
+            </div><div class="book-container">
             {% endif %}
-        {% endif %}
-        {% endfor %}
+          {% endfor %}
+        </div>
     </div>
 {% endblock %}
