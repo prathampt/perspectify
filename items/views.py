@@ -5,6 +5,7 @@ from .models import Genre, Book, SaveBook
 from .forms import AddBookForm, EditBookForm
 from .scripy import add_books_from_json
 import json, os
+from random import sample
 
 def books(request):
     genres = Genre.objects.all()
@@ -25,9 +26,10 @@ def books(request):
 
         books = books.filter(query_filter)
 
+    shuffled_book = sample(list(books), min(24, books.count()))
 
     return render(request, 'items/books.html', {
-        'books': books[0:24],
+        'books': shuffled_book,
         'query': query,
         'genres': genres,
         'genre_id': int(genre_id)

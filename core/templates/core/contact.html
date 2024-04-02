@@ -3,22 +3,11 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-    <h1>The contact page</h1>
-{% endblock %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
+<div class="container">
+  <div>
     <h1>Contact Us</h1>
     <p>If you have any questions or inquiries, please feel free to contact us using the form below:</p>
-    <form action="#" method="post" class="contact-form">
+    <form action="{% url 'items:books' %}" method="post" class="contact-form">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -34,5 +23,7 @@
       <button type="submit">Submit</button>
     </form>
   </div>
-</body>
-</html>
+  
+</div>
+{% endblock %}
+
