@@ -7,19 +7,14 @@
 
 .book-bg {
     overflow: hidden;
-    height: 32rem; /* Keep the height */
-    width: calc(8.33% - 4px); /* Adjust the width to fit 12 books in a single line */
-    margin: 2px;
+    height: 15rem; /* Decrease the height slightly */
+    width: calc(14.5% - 5.333px); /* Adjust the width to fit six books in a single row */
+    margin: 1%; /* Increase the spacing between each book */
     cursor: pointer;
     transition: margin 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
     filter: grayscale(25%);
-    border-radius: 4px;
-    background: grey;
-    box-shadow: 0 0.5rem 1rem 0rem rgba(0, 0, 0, 0.4);
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-image: linear-gradient(to right, #333, #333 15%, antiquewhite 30%, antiquewhite 70%, #333 85%, #333);
-    border-image-slice: 1;
+    border-radius: 20px; /* Add border-radius for curved edges */
+    box-shadow: 0 0.2rem 0.5rem 0.1rem rgba(0, 0, 0, 0.3); /* Softer and darker shadow */
     order: 200;
     display: inline-block; /* Display as inline-block */
     align-items: center; /* Center content vertically */
@@ -28,17 +23,50 @@
 .book-bg:hover {
     box-shadow: 0 0.5rem 3rem -0.5rem rgba(0, 0, 0, 0.4);
     z-index: 10;
-    margin-top: -15px;
+    margin-top: -10px; /* Adjust margin-top */
     margin-bottom: 10px;
     transform: scale(1.03, 1.03);
 }
 
+/* Define unique background colors for each book */
+.book-bg { 
+    background: linear-gradient(45deg, #11998E , #38EF7D); /* Gradient between #764BA2 and #667EEA */
+    background-size: 600% 600%;
+    animation: GradientAnimation 10s ease infinite;
+}
+
+/* Add more unique colors for additional books as needed */
+
 .book {
-    background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)), radial-gradient(ellipse at bottom, rgba(70, 70, 70, 0.5), transparent);
     font-family: "Unica One", cursive;
-    color: darkorange;
+    color: white; /* White text color */
     text-align: center; /* Center-align the text */
     padding: 10px; /* Add padding for better spacing */
     height: 100%; /* Ensure the content takes up full height */
     width: 100%; /* Ensure the content takes up full width */
+    text-align: center;
+}
+
+.css-selector {
+    background: linear-gradient(154deg, #B0F2B4, #1828D4, #E50BD9);
+    background-size: 600% 600%;
+    animation: GradientAnimation 23s ease infinite;
+}
+  
+@keyframes GradientAnimation {
+    0%{background-position: 0% 17%}
+    50%{background-position: 100% 83%}
+    100%{background-position: 0% 17%}
+}
+
+.css-selector {
+    background: linear-gradient(-42deg, #FFA500, #FFCC00, #FFD700, #FFD700, #FF6347, #FF4500);
+    background-size: 1000% 1000%;
+    animation: GradientAnimation 30s ease infinite;
+}
+
+@keyframes GradientAnimation {
+    0% {background-position: 0% 96%}
+    50% {background-position: 100% 4%}
+    100% {background-position: 0% 96%}
 }

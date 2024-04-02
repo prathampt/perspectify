@@ -17,7 +17,9 @@
 }
 
 .profile-box{
-    background: #81e681;
+    background: linear-gradient(45deg, #11998E , #38EF7D); /* Gradient between #764BA2 and #667EEA */
+    background-size: 100% 100%;
+    animation: GradientAnimation 5s ease infinite;
     text-align: center;
     padding: 50px 150px;
     color: black;
