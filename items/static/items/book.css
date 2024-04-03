@@ -14,6 +14,7 @@
 ::-webkit-scrollbar{
   display: none;
 }
+
 .hover-header {
   background-color: #fff;
   backdrop-filter: blur(20px);
@@ -27,6 +28,42 @@
   width: 100%;
   z-index: 999;
 }
+
+/* Adjusted hover effect */
+.book:hover .hover-header {
+  opacity: .5;
+}
+
+
+.button-container {
+  display: none; /* Initially hide the button container */
+  justify-content: center;
+  align-items: center;
+}
+
+.hover-header:hover .button-container {
+  display: flex; /* Display the button container on hover */
+  justify-content: center; /* Align buttons in one row */
+  gap: 10px; /* Add gap between buttons */
+}
+
+.toggle-button,
+.login-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding and border in the width */
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover,
+.login-button:hover {
+  background-color: #2E8B57;
+}
+
 
 .reading-mode {
   filter:sepia(100%) grayscale(0.7) brightness(0.7) saturate(150%);

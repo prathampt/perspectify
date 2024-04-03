@@ -131,3 +131,15 @@ body {
   margin-top: 10px; /* Add margin at the top to separate book details */
 }
 
+/* Add these CSS rules to your existing stylesheet */
+
+.book-wrapper a {
+  text-decoration: none;
+  color: black; /* Set text color to black */
+}
+
+.book-wrapper a h5,
+.book-wrapper a p {
+  text-decoration: none;
+  color: black; /* Set text color to black */
+}
