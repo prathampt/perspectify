@@ -42,9 +42,12 @@
       color: white;
       padding: 10px 20px;
       border: none;
+      underline: none;
       cursor: pointer;
       border-radius: 5px;
-      margin: 0 10px; /* Added margin to create space between buttons */
+      margin: 0 10px;
+      font-size: small;
+      text-decoration: none;
     }
 
     .toggle-buttons {
@@ -81,7 +84,7 @@
       </form>
     {% endif %}
   {% else %}
-  <button class="toggle-button" href="{% url 'core:login' %}">Save Book/Bookmark</button>
+  <a class="toggle-button" href="{% url 'core:login' %}">Save Book/Bookmark</a>
   {% endif %}
 </div>
 </div>
