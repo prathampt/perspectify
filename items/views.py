@@ -5,28 +5,51 @@ from .models import Genre, Book, SaveBook
 from .forms import AddBookForm, EditBookForm
 from .scripy import add_books_from_json
 import json, os
-from random import sample
+import random
 
 def books(request):
     genres = Genre.objects.all()
     genre_id = request.GET.get('genre', 0)
     query = request.GET.get('query', '')
 
-    books = Book.objects.all()
+    # books = Book.objects.all()
 
-    if genre_id and genre_id != "0":
-        books = books.filter(genre__id=genre_id)
+    req_no_of_random_items = 24
 
-    if query:
+    books = None
+
+    if query and genre_id and genre_id != "0":
         query_words = query.split()
 
         query_filter = Q()
         for word in query_words:
             query_filter |= Q(title__icontains=word) | Q(author__icontains=word)
 
-        books = books.filter(query_filter)
+        books = Book.objects.filter(query_filter).filter(genre__id=genre_id)
 
-    shuffled_book = sample(list(books), min(24, books.count()))
+    elif query:
+        query_words = query.split()
+
+        query_filter = Q()
+        for word in query_words:
+            query_filter |= Q(title__icontains=word) | Q(author__icontains=word)
+
+        books = Book.objects.filter(query_filter)
+
+    elif genre_id and genre_id != "0":
+        books = Book.objects.filter(genre__id=genre_id)
+
+    else:
+        books = Book.objects
+
+
+    # shuffled_book = sample(list(books), min(24, books.count()))
+        
+    possible_ids = list(books.values_list('id', flat=True))
+
+    possible_ids = random.choices(possible_ids, k=req_no_of_random_items)
+
+    shuffled_book = books.filter(pk__in=possible_ids)
 
     return render(request, 'items/books.html', {
         'books': shuffled_book,
