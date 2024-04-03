@@ -47,7 +47,7 @@ def books(request):
         
     possible_ids = list(books.values_list('id', flat=True))
 
-    possible_ids = random.choices(possible_ids, k=req_no_of_random_items)
+    possible_ids = random.choices(possible_ids, k=min(req_no_of_random_items, len(possible_ids)))
 
     shuffled_book = books.filter(pk__in=possible_ids)
 
