@@ -48,6 +48,17 @@ This website is made for giving people a daily boost of motivation...
 This is entirely made using a framework of python Django, and styled using CSS only...
 
 ---
+### Glimpse
+<img src="https://github.com/prathampt/perspectify/blob/main/resources/MergedImages.avif">
+
+<p align="center">
+	<img src="https://github.com/prathampt/perspectify/blob/main/resources/pageTurning.gif">
+</p>
+
+
+### Structure in a nut shell
+<img src="https://github.com/prathampt/perspectify/blob/main/resources/flowchart.png">
+---
 
 ##  Repository Structure
 
